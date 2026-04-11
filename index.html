@@ -1,0 +1,1536 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Estefania Hidalgo · QA Tester Funcional Junior</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #6366f1;
+      --primary-dark: #4338ca;
+      --accent: #06b6d4;
+      --accent2: #10b981;
+      --warn: #f59e0b;
+      --bg: #0f172a;
+      --bg2: #1e293b;
+      --bg3: #334155;
+      --card: #1e293b;
+      --card2: #273548;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --border: #334155;
+      --glow: rgba(99, 102, 241, 0.25);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh
+    }
+
+    /* PARTICLES */
+    #particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden
+    }
+
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      opacity: .15;
+      animation: float linear infinite
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) scale(0);
+        opacity: 0
+      }
+
+      10% {
+        opacity: .15
+      }
+
+      90% {
+        opacity: .1
+      }
+
+      100% {
+        transform: translateY(-10vh) scale(1);
+        opacity: 0
+      }
+    }
+
+    /* LANG SWITCHER */
+    .lang-switcher {
+      position: fixed;
+      top: 14px;
+      right: 18px;
+      z-index: 999;
+      display: flex;
+      gap: 6px
+    }
+
+    .lang-btn {
+      padding: 6px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(15, 23, 42, .85);
+      color: var(--muted);
+      font-size: .8rem;
+      font-weight: 700;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+      transition: all .2s;
+      font-family: 'Inter', sans-serif
+    }
+
+    .lang-btn.active,
+    .lang-btn:hover {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary)
+    }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      z-index: 1;
+      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+      padding: 60px 24px 50px;
+      text-align: center;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border)
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(99, 102, 241, .18) 0%, transparent 70%)
+    }
+
+    /* 3D AVATAR SVG */
+    .avatar-wrapper {
+      width: 140px;
+      height: 140px;
+      margin: 0 auto 22px;
+      position: relative;
+      z-index: 1;
+      filter: drop-shadow(0 0 28px rgba(99, 102, 241, .45))
+    }
+
+    .avatar-wrapper svg {
+      width: 100%;
+      height: 100%;
+      animation: avatar-float 4s ease-in-out infinite
+    }
+
+    @keyframes avatar-float {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(-1deg)
+      }
+
+      50% {
+        transform: translateY(-10px) rotate(1deg)
+      }
+    }
+
+    .hero h1 {
+      font-size: clamp(1.7rem, 5vw, 2.5rem);
+      font-weight: 800;
+      position: relative;
+      z-index: 1;
+      background: linear-gradient(90deg, #f1f5f9, var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent
+    }
+
+    .hero .role {
+      font-size: .97rem;
+      color: var(--muted);
+      margin-top: 8px;
+      position: relative;
+      z-index: 1
+    }
+
+    .hero .role span {
+      color: var(--accent);
+      font-weight: 600
+    }
+
+    .contact-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+      position: relative;
+      z-index: 1
+    }
+
+    .contact-btn {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(255, 255, 255, .05);
+      border: 1px solid rgba(255, 255, 255, .12);
+      color: var(--text);
+      text-decoration: none;
+      padding: 8px 18px;
+      border-radius: 999px;
+      font-size: .83rem;
+      font-weight: 500;
+      transition: all .25s;
+      backdrop-filter: blur(4px)
+    }
+
+    .contact-btn:hover {
+      background: var(--primary);
+      border-color: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px var(--glow)
+    }
+
+    .badges-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 16px;
+      position: relative;
+      z-index: 1
+    }
+
+    .badge-pill {
+      padding: 5px 14px;
+      border-radius: 999px;
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .3px
+    }
+
+    .badge-pill.green {
+      background: rgba(16, 185, 129, .15);
+      color: var(--accent2);
+      border: 1px solid rgba(16, 185, 129, .3)
+    }
+
+    .badge-pill.blue {
+      background: rgba(99, 102, 241, .15);
+      color: #a5b4fc;
+      border: 1px solid rgba(99, 102, 241, .3)
+    }
+
+    .badge-pill.cyan {
+      background: rgba(6, 182, 212, .15);
+      color: var(--accent);
+      border: 1px solid rgba(6, 182, 212, .3)
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: rgba(15, 23, 42, .92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 6px;
+      padding: 14px 16px
+    }
+
+    .nav-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 20px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      font-family: 'Inter', sans-serif;
+      font-size: .84rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .2s
+    }
+
+    .nav-btn:hover {
+      color: var(--text);
+      border-color: var(--primary)
+    }
+
+    .nav-btn.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+      box-shadow: 0 4px 14px var(--glow)
+    }
+
+    /* MAIN */
+    main {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 36px 16px 80px;
+      position: relative;
+      z-index: 1
+    }
+
+    .section {
+      display: none;
+      animation: fadeUp .35s ease
+    }
+
+    .section.active {
+      display: block
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(16px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text)
+    }
+
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--primary), transparent)
+    }
+
+    /* PERFIL */
+    .summary-card {
+      background: linear-gradient(135deg, rgba(99, 102, 241, .1), rgba(6, 182, 212, .07));
+      border: 1px solid rgba(99, 102, 241, .25);
+      border-radius: 16px;
+      padding: 28px;
+      margin-bottom: 28px;
+      line-height: 1.8;
+      font-size: .96rem;
+      color: #cbd5e1
+    }
+
+    .summary-card strong {
+      color: var(--accent)
+    }
+
+    .highlights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 14px
+    }
+
+    .hl-card {
+      background: var(--card2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      transition: all .25s
+    }
+
+    .hl-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px var(--glow)
+    }
+
+    .hl-card .icon {
+      font-size: 1.6rem;
+      margin-bottom: 10px
+    }
+
+    .hl-card h4 {
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      color: var(--muted);
+      margin-bottom: 8px
+    }
+
+    .hl-card p {
+      font-size: .88rem;
+      color: var(--text);
+      line-height: 1.55
+    }
+
+    .project-banner {
+      margin-top: 28px;
+      background: linear-gradient(135deg, rgba(245, 158, 11, .1), rgba(99, 102, 241, .1));
+      border: 1px solid rgba(245, 158, 11, .3);
+      border-radius: 16px;
+      padding: 24px 28px
+    }
+
+    .project-banner h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--warn);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px
+    }
+
+    .project-banner p {
+      font-size: .9rem;
+      color: #cbd5e1;
+      line-height: 1.7
+    }
+
+    .framework-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px
+    }
+
+    .fw-badge {
+      padding: 6px 16px;
+      border-radius: 8px;
+      font-size: .8rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px
+    }
+
+    .fw-badge.itil {
+      background: rgba(99, 102, 241, .2);
+      color: #a5b4fc;
+      border: 1px solid rgba(99, 102, 241, .4)
+    }
+
+    .fw-badge.istqb {
+      background: rgba(16, 185, 129, .2);
+      color: #6ee7b7;
+      border: 1px solid rgba(16, 185, 129, .4)
+    }
+
+    .fw-badge.scrum {
+      background: rgba(6, 182, 212, .2);
+      color: #67e8f9;
+      border: 1px solid rgba(6, 182, 212, .4)
+    }
+
+    /* TIMELINE */
+    .timeline {
+      position: relative;
+      padding-left: 28px
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 8px;
+      top: 8px;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--primary), var(--accent), transparent)
+    }
+
+    .tl-item {
+      position: relative;
+      margin-bottom: 28px
+    }
+
+    .tl-dot {
+      position: absolute;
+      left: -24px;
+      top: 6px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--primary);
+      border: 2px solid var(--bg);
+      box-shadow: 0 0 10px var(--glow)
+    }
+
+    .exp-card {
+      background: var(--card2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+      transition: all .25s
+    }
+
+    .exp-card:hover {
+      border-color: var(--primary);
+      box-shadow: 0 6px 24px var(--glow)
+    }
+
+    .exp-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 14px
+    }
+
+    .exp-company {
+      font-size: .78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent)
+    }
+
+    .exp-role {
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-top: 2px
+    }
+
+    .exp-meta {
+      font-size: .8rem;
+      color: var(--muted)
+    }
+
+    .date-chip {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 4px 12px;
+      font-size: .78rem;
+      color: var(--muted);
+      white-space: nowrap;
+      font-family: 'Fira Code', monospace
+    }
+
+    .exp-list {
+      list-style: none
+    }
+
+    .exp-list li {
+      display: flex;
+      gap: 10px;
+      padding: 7px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, .04);
+      font-size: .9rem;
+      line-height: 1.55;
+      color: #cbd5e1
+    }
+
+    .exp-list li:last-child {
+      border-bottom: none
+    }
+
+    .exp-list li::before {
+      content: '▸';
+      color: var(--primary);
+      flex-shrink: 0;
+      margin-top: 1px
+    }
+
+    .exp-list li strong {
+      color: #e2e8f0
+    }
+
+    .method-tag {
+      display: inline-block;
+      font-size: .7rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-left: 6px;
+      vertical-align: middle
+    }
+
+    .method-tag.itil {
+      background: rgba(99, 102, 241, .2);
+      color: #a5b4fc
+    }
+
+    .method-tag.istqb {
+      background: rgba(16, 185, 129, .2);
+      color: #6ee7b7
+    }
+
+    /* TECH */
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 14px
+    }
+
+    .tech-group {
+      background: var(--card2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      transition: all .25s
+    }
+
+    .tech-group:hover {
+      border-color: var(--accent);
+      box-shadow: 0 4px 20px rgba(6, 182, 212, .12)
+    }
+
+    .tech-group h4 {
+      font-size: .75rem;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      color: var(--muted);
+      margin-bottom: 12px
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 11px;
+      border-radius: 6px;
+      font-size: .78rem;
+      font-weight: 600;
+      margin: 3px 2px
+    }
+
+    .tag.qa {
+      background: rgba(99, 102, 241, .15);
+      color: #a5b4fc;
+      border: 1px solid rgba(99, 102, 241, .25)
+    }
+
+    .tag.db {
+      background: rgba(6, 182, 212, .12);
+      color: #67e8f9;
+      border: 1px solid rgba(6, 182, 212, .25)
+    }
+
+    .tag.erp {
+      background: rgba(245, 158, 11, .12);
+      color: #fcd34d;
+      border: 1px solid rgba(245, 158, 11, .25)
+    }
+
+    .tag.green {
+      background: rgba(16, 185, 129, .12);
+      color: #6ee7b7;
+      border: 1px solid rgba(16, 185, 129, .25)
+    }
+
+    .tag.gray {
+      background: rgba(148, 163, 184, .1);
+      color: #94a3b8;
+      border: 1px solid rgba(148, 163, 184, .2)
+    }
+
+    /* FRAMEWORKS */
+    .fw-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 18px;
+      margin-bottom: 28px
+    }
+
+    .fw-card {
+      border-radius: 16px;
+      padding: 24px;
+      border: 1px solid;
+      transition: all .25s
+    }
+
+    .fw-card:hover {
+      transform: translateY(-4px)
+    }
+
+    .fw-card.itil-card {
+      background: rgba(99, 102, 241, .07);
+      border-color: rgba(99, 102, 241, .3)
+    }
+
+    .fw-card.istqb-card {
+      background: rgba(16, 185, 129, .07);
+      border-color: rgba(16, 185, 129, .3)
+    }
+
+    .fw-card.scrum-card {
+      background: rgba(6, 182, 212, .07);
+      border-color: rgba(6, 182, 212, .3)
+    }
+
+    .fw-card h3 {
+      font-size: 1rem;
+      font-weight: 800;
+      margin-bottom: 6px
+    }
+
+    .fw-card .fw-sub {
+      font-size: .78rem;
+      margin-bottom: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .6px
+    }
+
+    .fw-card p {
+      font-size: .87rem;
+      color: #94a3b8;
+      line-height: 1.65;
+      margin-bottom: 14px
+    }
+
+    .fw-card ul {
+      list-style: none
+    }
+
+    .fw-card ul li {
+      font-size: .85rem;
+      color: #cbd5e1;
+      padding: 5px 0;
+      display: flex;
+      gap: 8px
+    }
+
+    .fw-card ul li::before {
+      content: '✓';
+      font-weight: 700;
+      flex-shrink: 0
+    }
+
+    .fw-card.itil-card h3,
+    .fw-card.itil-card ul li::before {
+      color: #a5b4fc
+    }
+
+    .fw-card.istqb-card h3,
+    .fw-card.istqb-card ul li::before {
+      color: #6ee7b7
+    }
+
+    .fw-card.scrum-card h3,
+    .fw-card.scrum-card ul li::before {
+      color: #67e8f9
+    }
+
+    .project-note {
+      background: linear-gradient(135deg, rgba(245, 158, 11, .08), rgba(99, 102, 241, .08));
+      border: 1px solid rgba(245, 158, 11, .25);
+      border-radius: 14px;
+      padding: 20px 24px;
+      font-size: .9rem;
+      color: #cbd5e1;
+      line-height: 1.7
+    }
+
+    .project-note strong {
+      color: var(--warn)
+    }
+
+    /* EDU */
+    .edu-grid {
+      display: grid;
+      gap: 12px
+    }
+
+    .edu-card {
+      background: var(--card2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      transition: all .2s
+    }
+
+    .edu-card:hover {
+      border-color: var(--primary)
+    }
+
+    .edu-icon {
+      font-size: 1.7rem;
+      min-width: 38px;
+      text-align: center
+    }
+
+    .edu-card h4 {
+      font-size: .94rem;
+      font-weight: 700;
+      color: var(--text)
+    }
+
+    .edu-card span {
+      font-size: .8rem;
+      color: var(--muted)
+    }
+
+    .edu-status {
+      margin-left: auto;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: .75rem;
+      font-weight: 700;
+      white-space: nowrap
+    }
+
+    .edu-status.active {
+      background: rgba(16, 185, 129, .2);
+      color: var(--accent2);
+      border: 1px solid rgba(16, 185, 129, .3)
+    }
+
+    .edu-status.done {
+      background: rgba(99, 102, 241, .15);
+      color: #a5b4fc;
+      border: 1px solid rgba(99, 102, 241, .3)
+    }
+
+    /* IDIOMAS */
+    .lang-card {
+      background: var(--card2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+      margin-bottom: 14px
+    }
+
+    .lang-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px
+    }
+
+    .lang-name {
+      font-size: 1rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px
+    }
+
+    .lang-level {
+      font-size: .78rem;
+      color: var(--accent);
+      font-weight: 700;
+      background: rgba(6, 182, 212, .1);
+      border: 1px solid rgba(6, 182, 212, .3);
+      padding: 4px 12px;
+      border-radius: 999px
+    }
+
+    .bar-track {
+      background: var(--bg3);
+      border-radius: 999px;
+      height: 8px;
+      overflow: hidden
+    }
+
+    .bar-fill {
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      transition: width 1.2s cubic-bezier(.4, 0, .2, 1)
+    }
+
+    footer {
+      text-align: center;
+      padding: 24px 16px;
+      border-top: 1px solid var(--border);
+      font-size: .8rem;
+      color: var(--muted);
+      position: relative;
+      z-index: 1
+    }
+
+    footer span {
+      color: var(--primary)
+    }
+
+    /* AVATAR IMAGE */
+    .avatar-wrapper {
+      width: 200px;
+      height: 200px;
+      margin: 0 auto 22px;
+      position: relative;
+      z-index: 1
+    }
+
+    .avatar-img-ring {
+      position: relative;
+      width: 200px;
+      height: 200px
+    }
+
+    .avatar-img {
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center top;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border: 3px solid var(--primary);
+      box-shadow: 0 0 0 5px rgba(99, 102, 241, 0.2), 0 0 40px rgba(99, 102, 241, 0.4);
+      animation: avatar-float 4s ease-in-out infinite;
+    }
+
+    @keyframes avatar-float {
+
+      0%,
+      100% {
+        transform: translate(-50%, -50%) translateY(0)
+      }
+
+      50% {
+        transform: translate(-50%, -50%) translateY(-10px)
+      }
+    }
+
+    .bubble {
+      position: absolute;
+      background: var(--card2);
+      border: 1px solid var(--primary);
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: .72rem;
+      font-weight: 800;
+      font-family: 'Fira Code', monospace;
+      color: #a5b4fc;
+      white-space: nowrap;
+    }
+
+    .b1 {
+      top: 10px;
+      left: -10px;
+      border-color: #6366f1;
+      color: #a5b4fc;
+      animation: bfloat1 3s ease-in-out infinite
+    }
+
+    .b2 {
+      top: 10px;
+      right: -10px;
+      border-color: #06b6d4;
+      color: #67e8f9;
+      animation: bfloat2 3.5s ease-in-out infinite
+    }
+
+    .b3 {
+      bottom: 20px;
+      left: -10px;
+      border-color: #10b981;
+      color: #6ee7b7;
+      animation: bfloat3 4s ease-in-out infinite
+    }
+
+    .b4 {
+      bottom: 20px;
+      right: -10px;
+      border-color: #f59e0b;
+      color: #fcd34d;
+      animation: bfloat4 2.8s ease-in-out infinite
+    }
+
+    @keyframes bfloat1 {
+
+      0%,
+      100% {
+        transform: translateY(0)
+      }
+
+      50% {
+        transform: translateY(-6px)
+      }
+    }
+
+    @keyframes bfloat2 {
+
+      0%,
+      100% {
+        transform: translateY(0)
+      }
+
+      50% {
+        transform: translateY(-4px)
+      }
+    }
+
+    @keyframes bfloat3 {
+
+      0%,
+      100% {
+        transform: translateY(0)
+      }
+
+      50% {
+        transform: translateY(5px)
+      }
+    }
+
+    @keyframes bfloat4 {
+
+      0%,
+      100% {
+        transform: translateY(0)
+      }
+
+      50% {
+        transform: translateY(4px)
+      }
+    }
+
+    @media(max-width:600px) {
+      .exp-top {
+        flex-direction: column
+      }
+
+      .fw-grid {
+        grid-template-columns: 1fr
+      }
+
+      .lang-switcher {
+        top: 8px;
+        right: 8px
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="particles"></div>
+
+  <!-- LANGUAGE SWITCHER -->
+  <div class="lang-switcher">
+    <button class="lang-btn active" onclick="setLang('es',this)"> ES</button>
+    <button class="lang-btn" onclick="setLang('en',this)"> EN</button>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero">
+    <!-- 3D CARTOON AVATAR -->
+    <div class="avatar-wrapper">
+      <div class="avatar-img-ring">
+        <img src="https://user-gen-media-assets.s3.amazonaws.com/gemini_images/8a99fad9-dcec-4a3c-b001-37ce0ddc3e5d.png"
+          alt="Estefania Hidalgo - QA Tester" class="avatar-img" />
+        <!-- Floating tech bubbles -->
+        <div class="bubble b1">QA</div>
+        <div class="bubble b2">ITSM</div>
+        <div class="bubble b3">SQL</div>
+        <div class="bubble b4">ERP/CRM</div>
+      </div>
+    </div>
+
+    <h1 data-es="Estefania Hidalgo Castro" data-en="Estefania Hidalgo Castro">Estefania Hidalgo Castro</h1>
+    <p class="role"><span data-es="QA Tester Funcional Junior" data-en="Junior Functional QA Tester">QA Tester Funcional
+        Junior</span> &nbsp;·&nbsp; <span data-es="ServiceNow ITSM · Pruebas UAT"
+        data-en="ServiceNow ITSM · UAT Testing">ServiceNow ITSM · Pruebas UAT</span></p>
+
+    <div class="contact-row">
+      <a class="contact-btn" href="https://www.linkedin.com/in/ehidalgocas/" target="_blank">🔗 LinkedIn</a>
+      <span class="contact-btn" data-es="📍 Madrid, España" data-en="📍 Madrid, Spain">📍 Madrid, España</span>
+    </div>
+    <div class="badges-row">
+      <span class="badge-pill green" data-es="✅ Disponible Remoto" data-en="✅ Remote Available">✅ Disponible
+        Remoto</span>
+      <span class="badge-pill blue" data-es="🇪🇺 Pasaporte EU" data-en="🇪🇺 EU Passport">🇪🇺 Pasaporte EU</span>
+      <span class="badge-pill cyan">📋 ITIL Aligned</span>
+      <span class="badge-pill green">🧪 ISTQB Practices</span>
+      <span class="badge-pill blue">🔄 Scrum Course</span>
+    </div>
+  </header>
+
+  <nav>
+    <button class="nav-btn active" onclick="show('perfil',this)" data-es="👤 Perfil" data-en="👤 Profile">👤
+      Perfil</button>
+    <button class="nav-btn" onclick="show('experiencia',this)" data-es="💼 Experiencia" data-en="💼 Experience">💼
+      Experiencia</button>
+    <button class="nav-btn" onclick="show('tecnologias',this)" data-es="⚙️ Tecnologías" data-en="⚙️ Technologies">⚙️
+      Tecnologías</button>
+    <button class="nav-btn" onclick="show('frameworks',this)" data-es="📋 ITIL · ISTQB" data-en="📋 ITIL · ISTQB">📋
+      ITIL · ISTQB</button>
+    <button class="nav-btn" onclick="show('educacion',this)" data-es="🎓 Educación" data-en="🎓 Education">🎓
+      Educación</button>
+    <button class="nav-btn" onclick="show('idiomas',this)" data-es="🌍 Idiomas" data-en="🌍 Languages">🌍
+      Idiomas</button>
+  </nav>
+
+  <main>
+
+    <!-- PERFIL / PROFILE -->
+    <section id="perfil" class="section active">
+      <div class="section-title" data-es="👤 Perfil Profesional" data-en="👤 Professional Profile">👤 Perfil Profesional
+      </div>
+      <div class="summary-card">
+        <span class="t-es">QA Tester Funcional con experiencia real en ejecución de <strong>pruebas funcionales y
+            UAT</strong> en entornos ERP empresariales (TRANSKAL, SAP). Experiencia en detección, reporte y seguimiento
+          de defectos, <strong>validación de datos con SQL</strong> y documentación de casos de prueba. Trabajo con
+          <strong>metodología Scrum</strong> y herramientas ITSM como ServiceNow. Perfil analítico y detallista
+          orientado a la calidad del software, resolución de problemas y mejora continua, aplicando buenas prácticas
+          alineadas con <strong>ITIL v4</strong> e <strong>ISTQB</strong>.</span>
+        <span class="t-en" style="display:none">Functional QA Tester with hands-on experience in <strong>functional
+            testing and UAT</strong> in enterprise ERP environments (TRANSKAL, SAP). Skilled in defect detection,
+          reporting and tracking, <strong>SQL data validation</strong> and test case documentation. Works with
+          <strong>Scrum methodology</strong> and ITSM tools like ServiceNow. Analytical and detail-oriented profile
+          focused on software quality, problem-solving and continuous improvement aligned with <strong>ITIL v4</strong>
+          and <strong>ISTQB</strong> best practices.</span>
+      </div>
+      <div class="highlights-grid">
+        <div class="hl-card">
+          <div class="icon">🧪</div>
+          <h4 data-es="QA & Testing" data-en="QA & Testing">QA & Testing</h4>
+          <p class="t-es">Pruebas funcionales, UAT, detección y reporte de defectos en entornos ERP productivos.</p>
+          <p class="t-en" style="display:none">Functional testing, UAT, defect detection and reporting in live ERP
+            environments.</p>
+        </div>
+        <div class="hl-card">
+          <div class="icon">🎫</div>
+          <h4>ServiceNow ITSM</h4>
+          <p class="t-es">Gestión completa del ciclo de vida de incidencias y peticiones de servicio.</p>
+          <p class="t-en" style="display:none">Full lifecycle management of incidents and service requests.</p>
+        </div>
+        <div class="hl-card">
+          <div class="icon">🗄️</div>
+          <h4 data-es="Validación SQL" data-en="SQL Validation">Validación SQL</h4>
+          <p class="t-es">Consultas SQL para análisis de KPIs, detección de errores en BBDD y validación de datos.</p>
+          <p class="t-en" style="display:none">SQL queries for KPI analysis, database error detection and data
+            validation.</p>
+        </div>
+        <div class="hl-card">
+          <div class="icon">📄</div>
+          <h4 data-es="Documentación Técnica" data-en="Technical Docs">Documentación Técnica</h4>
+          <p class="t-es">Casos de prueba, reportes de defectos, manuales y guías de procedimiento.</p>
+          <p class="t-en" style="display:none">Test cases, defect reports, user manuals and procedure guides.</p>
+        </div>
+        <div class="hl-card">
+          <div class="icon">🔗</div>
+          <h4 data-es="Integraciones" data-en="Integrations">Integraciones</h4>
+          <p class="t-es">Análisis y diagnóstico de errores en integraciones críticas SAP, MuleSoft, Fullstep.</p>
+          <p class="t-en" style="display:none">Error analysis and diagnosis in critical SAP, MuleSoft and Fullstep
+            integrations.</p>
+        </div>
+        <div class="hl-card">
+          <div class="icon">💻</div>
+          <h4 data-es="Trabajo Remoto" data-en="Remote Work">Trabajo Remoto</h4>
+          <p class="t-es">Experiencia en equipos distribuidos. Disponible 100% remoto. Pasaporte UE.</p>
+          <p class="t-en" style="display:none">Experience in distributed teams. 100% remote available. EU Passport.</p>
+        </div>
+      </div>
+      <div class="project-banner">
+        <h3>🚀 <span class="t-es">Este CV es un proyecto técnico</span><span class="t-en" style="display:none">This CV
+            is a technical project</span></h3>
+        <p class="t-es">Esta página web ha sido desarrollada como <strong>portfolio técnico</strong> para demostrar
+          competencias de calidad, documentación y buenas prácticas. Refleja conocimientos aplicados de <strong>ITIL
+            v4</strong> e <strong>ISTQB Foundation</strong>, además del uso de Scrum en proyectos reales y adaptación a
+          las nuevas tecnologías con <strong> IA (PERPLEXITY & ANTIGRAVITY) </strong> . </p>
+        <p class="t-en" style="display:none">This web page was built as a <strong>technical portfolio</strong> to
+          demonstrate quality, documentation and best practice competencies. It reflects applied knowledge of
+          <strong>ITIL v4</strong> and <strong>ISTQB Foundation</strong>, as well as real-world Scrum usage and
+          adaptation to new technologies with <strong> AI (PERPLEXITY & ANTIGRAVITY) </strong> . </p>
+        <div class="framework-badges">
+          <span class="fw-badge itil">📋 ITIL v4 Aligned</span>
+          <span class="fw-badge istqb">🧪 ISTQB Practices</span>
+          <span class="fw-badge scrum">🔄 Scrum Course</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCIA / EXPERIENCE -->
+    <section id="experiencia" class="section">
+      <div class="section-title" data-es="💼 Experiencia Laboral" data-en="💼 Work Experience">💼 Experiencia Laboral
+      </div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="exp-card">
+            <div class="exp-top">
+              <div>
+                <div class="exp-company">BERGÉ · Consultora Grupo Marzo</div>
+                <div class="exp-role t-es">QA / Técnico Soporte Funcional de Aplicaciones</div>
+                <div class="exp-role t-en" style="display:none">QA / Functional Application Support Technician</div>
+                <div class="exp-meta t-es">Proyecto implantación ERP TRANSKAL · Sector Logístico</div>
+                <div class="exp-meta t-en" style="display:none">ERP TRANSKAL Implementation Project · Logistics Sector
+                </div>
+              </div>
+              <span class="date-chip">Jul 2023 → Dec 2025</span>
+            </div>
+            <ul class="exp-list">
+              <li><span><strong class="t-es">Aseguramiento de la Calidad (QA):</strong><strong class="t-en"
+                    style="display:none">Quality Assurance (QA):</strong> <span class="t-es">Ejecución de pruebas
+                    funcionales y UAT tras actualizaciones y despliegues en producción.</span><span class="t-en"
+                    style="display:none">Execution of functional tests and UAT after production updates and
+                    deployments.</span> <span class="method-tag istqb">ISTQB</span></span></li>
+              <li><span><strong class="t-es">Validación de Datos:</strong><strong class="t-en" style="display:none">Data
+                    Validation:</strong> <span class="t-es">Consultas SQL para detección de errores en BBDD y análisis
+                    de KPIs.</span><span class="t-en" style="display:none">SQL queries for database error detection and
+                    KPI analysis.</span> <span class="method-tag istqb">ISTQB</span></span></li>
+              <li><span><strong class="t-es">Análisis y Diagnóstico:</strong><strong class="t-en"
+                    style="display:none">Analysis & Diagnosis:</strong> <span class="t-es">Resolución de errores en
+                    integraciones críticas con SAP, Fullstep y MuleSoft.</span><span class="t-en"
+                    style="display:none">Error resolution in critical integrations with SAP, Fullstep and
+                    MuleSoft.</span> <span class="method-tag itil">ITIL</span></span></li>
+              <li><span><strong class="t-es">Documentación Técnica:</strong><strong class="t-en"
+                    style="display:none">Technical Documentation:</strong> <span class="t-es">Casos de prueba, reportes
+                    de defectos, manuales de usuario y guías de procedimiento.</span><span class="t-en"
+                    style="display:none">Test cases, defect reports, user manuals and procedure guides.</span> <span
+                    class="method-tag istqb">ISTQB</span></span></li>
+              <li><span><strong class="t-es">Gestión de Incidencias:</strong><strong class="t-en"
+                    style="display:none">Incident Management:</strong> <span class="t-es">Control del ciclo de vida de
+                    tickets en ServiceNow (ITSM).</span><span class="t-en" style="display:none">Ticket lifecycle
+                    management in ServiceNow (ITSM).</span> <span class="method-tag itil">ITIL</span></span></li>
+              <li><span><strong class="t-es">Soporte Funcional:</strong><strong class="t-en"
+                    style="display:none">Functional Support:</strong> <span class="t-es">Asistencia técnica a usuarios
+                    del ERP TRANSKAL en entorno logístico.</span><span class="t-en" style="display:none">Technical
+                    assistance to ERP TRANSKAL users in logistics environment.</span> <span
+                    class="method-tag itil">ITIL</span></span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot" style="background:var(--accent)"></div>
+          <div class="exp-card">
+            <div class="exp-top">
+              <div>
+                <div class="exp-company">NOVOMATIC SPAIN</div>
+                <div class="exp-role t-es">Auxiliar de Reparación &amp; Gestión de Almacén</div>
+                <div class="exp-role t-en" style="display:none">Repair Assistant &amp; Warehouse Management</div>
+              </div>
+              <span class="date-chip">Sep 2021 → Jan 2023</span>
+            </div>
+            <ul class="exp-list">
+              <li><span class="t-es">Mantenimiento preventivo y reparación de componentes informáticos (hardware,
+                  software, firmware).</span><span class="t-en" style="display:none">Preventive maintenance and repair
+                  of IT components (hardware, software, firmware).</span></li>
+              <li><span class="t-es">Gestión de almacén: recepción, control de stock e inventario.</span><span
+                  class="t-en" style="display:none">Warehouse management: stock reception, control and inventory.</span>
+              </li>
+              <li><span class="t-es">Registro de datos en ERP Microsoft Navision.</span><span class="t-en"
+                  style="display:none">Data entry in ERP Microsoft Navision.</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot" style="background:var(--accent2)"></div>
+          <div class="exp-card">
+            <div class="exp-top">
+              <div>
+                <div class="exp-company">SAMSUNG · CTDI Spain</div>
+                <div class="exp-role t-es">Técnico de Soporte Postventa</div>
+                <div class="exp-role t-en" style="display:none">After-Sales Support Technician</div>
+              </div>
+              <span class="date-chip">Jul 2020 → Aug 2021</span>
+            </div>
+            <ul class="exp-list">
+              <li><span class="t-es">Puesta en marcha y configuración de dispositivos Android/Apple.</span><span
+                  class="t-en" style="display:none">Setup and configuration of Android/Apple devices.</span></li>
+              <li><span class="t-es">Resolución de incidencias de software y escalado de hardware.</span><span
+                  class="t-en" style="display:none">Software incident resolution and hardware escalation.</span></li>
+              <li><span class="t-es">Registro de datos del cliente e incidencias en sistema.</span><span class="t-en"
+                  style="display:none">Customer data and incident registration in the system.</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TECNOLOGÍAS -->
+    <section id="tecnologias" class="section">
+      <div class="section-title" data-es="⚙️ Tecnologías &amp; Herramientas" data-en="⚙️ Technologies &amp; Tools">⚙️
+        Tecnologías &amp; Herramientas</div>
+      <div class="tech-grid">
+        <div class="tech-group">
+          <h4>🧪 QA / Testing</h4><span class="tag qa">Selenium</span><span class="tag qa">Postman</span><span
+            class="tag qa">GitHub</span><span class="tag qa">Notepad++</span>
+        </div>
+        <div class="tech-group">
+          <h4>🎫 ITSM</h4><span class="tag green">ServiceNow</span><span class="tag green">Jira</span><span
+            class="tag green" data-es="Gestión tickets" data-en="Ticket Mgmt">Gestión tickets</span><span
+            class="tag green">ITIL Aligned</span>
+        </div>
+        <div class="tech-group">
+          <h4>🗄️ <span data-es="Bases de Datos" data-en="Databases">Bases de Datos</span></h4><span
+            class="tag db">SQL</span><span class="tag db">Oracle</span><span class="tag db">MySQL</span>
+        </div>
+        <div class="tech-group">
+          <h4>📦 ERP / Apps</h4><span class="tag erp">TRANSKAL</span><span class="tag erp">SAP</span><span
+            class="tag erp">Navision</span><span class="tag erp">MuleSoft</span>
+        </div>
+        <div class="tech-group">
+          <h4>💻 <span data-es="Sistemas" data-en="Systems">Sistemas</span></h4><span
+            class="tag gray">Windows</span><span class="tag gray">Linux</span>
+        </div>
+        <div class="tech-group">
+          <h4>📊 <span data-es="Herramientas" data-en="Tools">Herramientas</span></h4><span class="tag gray">Power
+            BI</span><span class="tag gray">Excel</span><span class="tag gray">Visio</span><span
+            class="tag gray">Slack</span><span class="tag gray">Teams</span>
+        </div>
+        <div class="tech-group">
+          <h4>🔄 <span data-es="Metodología" data-en="Methodology">Metodología</span></h4><span
+            class="tag green">Scrum</span><span class="tag green">Agile</span><span class="tag qa">ITIL v4</span><span
+            class="tag db">ISTQB</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- FRAMEWORKS -->
+    <section id="frameworks" class="section">
+      <div class="section-title">📋 ITIL &amp; ISTQB</div>
+      <div class="fw-grid">
+        <div class="fw-card itil-card">
+          <h3>📋 ITIL v4</h3>
+          <div class="fw-sub" style="color:#a5b4fc">IT Infrastructure Library</div>
+          <p class="t-es">Framework de gestión de servicios IT que define buenas prácticas para la entrega y soporte de
+            servicios de calidad.</p>
+          <p class="t-en" style="display:none">IT service management framework defining best practices for quality
+            service delivery and support.</p>
+          <ul>
+            <li><span class="t-es">Gestión de incidencias con ServiceNow</span><span class="t-en"
+                style="display:none">Incident management with ServiceNow</span></li>
+            <li><span class="t-es">Control del ciclo de vida de tickets</span><span class="t-en"
+                style="display:none">Ticket lifecycle control</span></li>
+            <li><span class="t-es">Escalado y resolución estructurada</span><span class="t-en"
+                style="display:none">Structured escalation and resolution</span></li>
+            <li><span class="t-es">Mejora continua del servicio</span><span class="t-en" style="display:none">Continual
+                service improvement</span></li>
+            <li><span class="t-es">Gestión del conocimiento y documentación</span><span class="t-en"
+                style="display:none">Knowledge management and documentation</span></li>
+          </ul>
+        </div>
+        <div class="fw-card istqb-card">
+          <h3>🧪 ISTQB Foundation</h3>
+          <div class="fw-sub" style="color:#6ee7b7">SW Testing Qualifications Board</div>
+          <p class="t-es">Estándar internacional de certificación en testing de software. Define principios y técnicas
+            de prueba profesional.</p>
+          <p class="t-en" style="display:none">International software testing certification standard. Defines principles
+            and professional testing techniques.</p>
+          <ul>
+            <li><span class="t-es">Diseño y ejecución de casos de prueba</span><span class="t-en"
+                style="display:none">Test case design and execution</span></li>
+            <li><span class="t-es">Pruebas funcionales y UAT</span><span class="t-en" style="display:none">Functional
+                testing and UAT</span></li>
+            <li><span class="t-es">Reporte y seguimiento de defectos</span><span class="t-en"
+                style="display:none">Defect reporting and tracking</span></li>
+            <li><span class="t-es">Testing basado en riesgo</span><span class="t-en" style="display:none">Risk-based
+                testing</span></li>
+            <li><span class="t-es">Validación y verificación de software</span><span class="t-en"
+                style="display:none">Software validation and verification</span></li>
+          </ul>
+        </div>
+        <div class="fw-card scrum-card">
+          <h3>🔄 Scrum / Agile</h3>
+          <div class="fw-sub" style="color:#67e8f9">IFCD048PO Certificado</div>
+          <p class="t-es">Metodología ágil de gestión de proyectos para entregas iterativas e incrementales de software
+            de calidad.</p>
+          <p class="t-en" style="display:none">Agile project management methodology for iterative and incremental
+            quality software delivery.</p>
+          <ul>
+            <li><span class="t-es">Participación en sprints y dailies</span><span class="t-en"
+                style="display:none">Sprint and daily participation</span></li>
+            <li><span class="t-es">Gestión de backlog y user stories</span><span class="t-en"
+                style="display:none">Backlog and user story management</span></li>
+            <li><span class="t-es">QA integrado en ciclo Agile</span><span class="t-en" style="display:none">QA
+                integrated in Agile cycle</span></li>
+            <li><span class="t-es">Retrospectivas y mejora continua</span><span class="t-en"
+                style="display:none">Retrospectives and continuous improvement</span></li>
+            <li><span class="t-es">Colaboración con equipos técnicos</span><span class="t-en"
+                style="display:none">Collaboration with technical teams</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="project-note">
+        <strong>💡 <span class="t-es">Nota sobre este proyecto:</span><span class="t-en" style="display:none">About this
+            project:</span></strong>
+        <span class="t-es"> Este CV web fue creado para demostrar competencias técnicas aplicadas como portfolio en
+          LinkedIn. Demuestra <strong>documentación técnica (ISTQB)</strong>, <strong>mejora continua y entrega de valor
+            (ITIL v4)</strong> y trabajo iterativo <strong>(Scrum)</strong>.</span>
+        <span class="t-en" style="display:none"> This web CV was built to demonstrate applied technical skills as a
+          LinkedIn portfolio. It showcases <strong>technical documentation (ISTQB)</strong>, <strong>continuous
+            improvement and value delivery (ITIL v4)</strong> and iterative work <strong>(Scrum)</strong>.</span>
+      </div>
+    </section>
+
+    <!-- EDUCACIÓN -->
+    <section id="educacion" class="section">
+      <div class="section-title" data-es="🎓 Educación &amp; Formación" data-en="🎓 Education &amp; Training">🎓
+        Educación &amp; Formación</div>
+      <div class="edu-grid">
+        <div class="edu-card">
+          <div class="edu-icon">🧪</div>
+          <div>
+            <h4 class="t-es">QA Testing – Pruebas Funcionales y Automatización</h4>
+            <h4 class="t-en" style="display:none">QA Testing – Functional &amp; Automation Testing</h4><span
+              class="t-es">Formación especializada</span><span class="t-en" style="display:none">Specialist
+              training</span>
+          </div>
+          <span class="edu-status active">🟢 2026</span>
+        </div>
+        <div class="edu-card">
+          <div class="edu-icon">🇬🇧</div>
+          <div>
+            <h4 class="t-es">Inglés Intensivo – Easypeasy</h4>
+            <h4 class="t-en" style="display:none">Intensive English – Easypeasy</h4><span> B1 </span>
+          </div>
+          <span class="edu-status active">🟢 2026</span>
+        </div>
+        <div class="edu-card">
+          <div class="edu-icon">📊</div>
+          <div>
+            <h4 class="t-es">Ciencia de Datos – IBM</h4>
+            <h4 class="t-en" style="display:none">Data Science – IBM</h4><span>IBM Certificate</span>
+          </div>
+          <span class="edu-status done">✅ 2025</span>
+        </div>
+        <div class="edu-card">
+          <div class="edu-icon">🏅</div>
+          <div>
+            <h4 class="t-es">Certificado Profesional en Soporte IT</h4>
+            <h4 class="t-en" style="display:none">Professional Certificate in IT Support</h4>
+          </div>
+          <span class="edu-status done">✅ 2023</span>
+        </div>
+        <div class="edu-card">
+          <div class="edu-icon">💻</div>
+          <div>
+            <h4>UC0491_3 – <span class="t-es">Desarrollo software entorno cliente</span><span class="t-en"
+                style="display:none">Client-side software development</span></h4>
+          </div>
+          <span class="edu-status done">✅ 2021</span>
+        </div>
+        <div class="edu-card">
+          <div class="edu-icon">🔄</div>
+          <div>
+            <h4>IFCD048PO – <span class="t-es">Metodología SCRUM</span><span class="t-en" style="display:none">SCRUM
+                Methodology</span></h4>
+          </div>
+          <span class="edu-status done">✅ 2020</span>
+        </div>
+        <div class="edu-card">
+          <div class="edu-icon">🎨</div>
+          <div>
+            <h4 class="t-es">Licenciatura en Diseño Gráfico</h4>
+            <h4 class="t-en" style="display:none">Bachelor's Degree in Graphic Design</h4>
+          </div>
+          <span class="edu-status done">✅ 2016</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- IDIOMAS -->
+    <section id="idiomas" class="section">
+      <div class="section-title" data-es="🌍 Idiomas" data-en="🌍 Languages">🌍 Idiomas</div>
+      <div class="lang-card">
+        <div class="lang-top">
+          <div class="lang-name">🇪🇸 <span class="t-es">Español</span><span class="t-en"
+              style="display:none">Spanish</span></div>
+          <span class="lang-level"><span class="t-es">Nativo · C2</span><span class="t-en" style="display:none">Native ·
+              C2</span></span>
+        </div>
+        <div class="bar-track">
+          <div class="bar-fill" id="bar-es" style="width:0%"></div>
+        </div>
+      </div>
+      <div class="lang-card">
+        <div class="lang-top">
+          <div class="lang-name">🇬🇧 <span class="t-es">Inglés</span><span class="t-en"
+              style="display:none">English</span></div>
+          <span class="lang-level">B1 · <span class="t-es">Intermedio </span><span class="t-en"
+              style="display:none">Intermediate </span></span>
+        </div>
+        <div class="bar-track">
+          <div class="bar-fill" id="bar-en-bar" style="width:0%;background:linear-gradient(90deg,#6366f1,#06b6d4)">
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    Estefania Hidalgo Castro · <span>QA Tester Funcional Junior</span> · Madrid 2026 · CV Portfolio Project
+  </footer>
+
+  <script>
+    // Particles
+    const container = document.getElementById('particles');
+    const colors = ['#6366f1', '#06b6d4', '#10b981', '#a5b4fc'];
+    for (let i = 0; i < 22; i++) {
+      const p = document.createElement('div'); p.className = 'particle';
+      const size = Math.random() * 6 + 3;
+      p.style.cssText = `width:${size}px;height:${size}px;left:${Math.random() * 100}%;background:${colors[Math.floor(Math.random() * colors.length)]};animation-duration:${Math.random() * 18 + 10}s;animation-delay:${Math.random() * 12}s`;
+      container.appendChild(p);
+    }
+
+    // Tabs
+    function show(id, btn) {
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      btn.classList.add('active');
+      if (id === 'idiomas') setTimeout(animateBars, 200);
+    }
+    function animateBars() {
+      document.getElementById('bar-es').style.width = '100%';
+      document.getElementById('bar-en-bar').style.width = '50%';
+    }
+
+    // Language switcher
+    let currentLang = 'es';
+    function setLang(lang, btn) {
+      currentLang = lang;
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      // Toggle .t-es / .t-en visibility
+      document.querySelectorAll('.t-es').forEach(el => el.style.display = lang === 'es' ? '' : 'none');
+      document.querySelectorAll('.t-en').forEach(el => el.style.display = lang === 'en' ? '' : 'none');
+
+      // Update data-es / data-en elements
+      document.querySelectorAll('[data-es]').forEach(el => {
+        const val = el.getAttribute('data-' + lang);
+        if (val) el.textContent = val;
+      });
+    }
+  </script>
+</body>
+
+</html>
