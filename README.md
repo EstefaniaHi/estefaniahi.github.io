@@ -1,6 +1,6 @@
 # 👩‍💻 Estefania Hidalgo Castro
 
-**QA Tester Funcional Junior | Application Support | IT Support | ServiceNow**
+**QA Tester | Application Support | IT Support | ServiceNow**
 
 ---
 
@@ -27,7 +27,7 @@ aplicando buenas prácticas alineadas con **ITIL v4**, **ISTQB Foundation** y **
 ---
 
 ## 💼 Roles objetivo
-- QA Tester Funcional Junior
+- QA Tester
 - Application Support
 - IT Support
 - ServiceNow ITSM
@@ -44,7 +44,7 @@ aplicando buenas prácticas alineadas con **ITIL v4**, **ISTQB Foundation** y **
 
 # 👩‍💻 Estefania Hidalgo Castro
 
-**QA Tester Junior | Application Support | IT Support | ServiceNow**
+**QA Tester| Application Support | IT Support | ServiceNow**
 
 ---
 
@@ -71,7 +71,7 @@ applying best practices aligned with **ITIL v4**, **ISTQB Foundation** and **Scr
 ---
 
 ## 💼 Target Roles
-- QA Tester Junior
+- QA Tester
 - Application Support
 - IT Support
 - ServiceNow ITSM
